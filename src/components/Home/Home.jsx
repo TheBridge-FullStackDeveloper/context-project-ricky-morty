@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../../context/GlobalState";
 import Character from "../Character/Character";
 
 const Home = () => {
-  const [characters, setCharacters] = useState([]);
+  //me traigo la función de mi context
+  const { getCharacters } = useContext(GlobalContext);
   
-  const getCharacters = async () => {
-    try {
-      const res = await axios.get("https://rickandmortyapi.com/api/character");
-      setCharacters(res.data.results);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
     getCharacters();
   }, []);
-
 
   return (
     <div>
     <h1>Home</h1>
     <p>El home nose que...</p>
-      <Character characters={characters}/>
+      <Character />
     </div>
   );
 };
