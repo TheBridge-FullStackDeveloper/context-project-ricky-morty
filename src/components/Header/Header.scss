@@ -1,0 +1,44 @@
+$color-blue: rgb(95, 168, 168);
+@import "../../colors.scss";
+
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+nav {
+  background-color: $color-blue;
+  color: $white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  a {
+    all: unset;
+  }
+  div {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+  }
+}
+
+.box {
+  @include transform(rotate(30deg));
+}
+.box2 {
+  @include transform(rotate(-50deg));
+}
+
+%message-shared {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+.message {
+  @extend %message-shared;
+}
+.success {
+  @extend %message-shared;
+  border-color: green;
+  color: green;
+}
